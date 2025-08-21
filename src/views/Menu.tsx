@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import UtilityButtons from "../components/UtilityButtons";
+import DeleteDataButton from "../components/DeleteDataButton";
 
 const Menu: React.FC = (): React.JSX.Element => {
 	return (
@@ -21,7 +21,7 @@ const Menu: React.FC = (): React.JSX.Element => {
 				</div>
 			</div>
 
-			<UtilityButtons />
+			<DeleteDataButton />
 		</>
 	);
 };
