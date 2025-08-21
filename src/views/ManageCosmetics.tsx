@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import GoBackButton from "../components/GoBackButton";
 import CosmeticGrid from "../components/CosmeticGrid";
+import GoBackButton from "../components/GoBackButton";
 import cosmetics from "../data/cosmetics.json";
 import { getLocalCosmetics, setLocalCosmetics } from "../utils/storage";
 
 const ManageCosmetics: React.FC = (): React.JSX.Element => {
 	const [selectedType, setSelectedType] = useState<string | null>(null);
-	const [userCosmetics, setUserCosmetics] =
-		useState<number[]>(getLocalCosmetics());
+	const [userCosmetics, setUserCosmetics] = useState<number[]>(
+		getLocalCosmetics()
+	);
 
 	const handleTypeClick = (type: string) => {
 		setSelectedType(type === selectedType ? null : type);
@@ -26,16 +27,16 @@ const ManageCosmetics: React.FC = (): React.JSX.Element => {
 
 	return (
 		<>
-			<div className="flex flex-col items-center justify-center h-full w-full p-20">
-				<div className="w-full h-full rounded-lg shadow-lg bg-gray-950 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-lg p-10 border border-gray-400 overflow-y-auto">
-					<h1 className="text-3xl font-bold text-center text-white mb-6">
+			<div className="flex flex-col items-center justify-center w-full h-full p-20">
+				<div className="w-full h-full p-10 overflow-y-auto bg-opacity-50 border border-gray-400 rounded-lg shadow-lg bg-gray-950 bg-clip-padding backdrop-filter backdrop-blur-lg">
+					<h1 className="mb-6 text-3xl font-bold text-center text-white">
 						Manage Cosmetics
 					</h1>
 
 					<div className="flex flex-row">
 						{/* Sidebar */}
-						<div className="w-72 h-full bg-gray-800 rounded-lg shadow-lg mr-6 bg-opacity-50">
-							<ul className="list-none p-4">
+						<div className="h-full mr-6 bg-gray-800 bg-opacity-50 rounded-lg shadow-lg w-72">
+							<ul className="p-4 list-none">
 								{Object.keys(cosmetics).map((type) => (
 									<li
 										key={type}
@@ -51,16 +52,14 @@ const ManageCosmetics: React.FC = (): React.JSX.Element => {
 						</div>
 
 						{/* Cosmetic Lists */}
-						<div className="flex-1 bg-gray-800 rounded-lg shadow-lg p-6 bg-opacity-50">
-							<h2 className="text-xl font-semibold text-white mb-4">
+						<div className="flex-1 p-6 bg-gray-800 bg-opacity-50 rounded-lg shadow-lg">
+							<h2 className="mb-4 text-xl font-semibold text-white">
 								Cosmetics List
 							</h2>
-							<ul className="list-none space-y-6">
+							<ul className="space-y-6 list-none">
 								{filteredTypes.map((type) => (
 									<li key={type}>
-										<span className="text-white font-medium">
-											{type}
-										</span>
+										<span className="font-medium text-white">{type}</span>
 										<CosmeticGrid
 											// @ts-expect-error cosmetics[type] is valid
 											cosmetics={cosmetics[type]}

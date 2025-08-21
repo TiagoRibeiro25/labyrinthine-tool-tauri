@@ -4,7 +4,7 @@ const GoBackButton: React.FC = (): React.JSX.Element => {
 	return (
 		<button
 			onClick={() => window.history.back()}
-			className="fixed top-6 left-6 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full shadow-lg z-50"
+			className="fixed z-50 p-3 text-white bg-gray-800 rounded-full shadow-lg top-6 left-6 hover:bg-gray-700"
 			aria-label="Go Back"
 		>
 			<FaArrowLeft className="w-5 h-5" />

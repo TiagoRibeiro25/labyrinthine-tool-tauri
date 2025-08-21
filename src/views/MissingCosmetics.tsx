@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import GoBackButton from "../components/GoBackButton";
 import CosmeticGrid from "../components/CosmeticGrid";
+import GoBackButton from "../components/GoBackButton";
 import cosmetics from "../data/cosmetics.json";
-import { getLocalCosmetics, setLocalCosmetics } from "../utils/storage";
 import type { Cosmetic } from "../global";
+import { getLocalCosmetics, setLocalCosmetics } from "../utils/storage";
 
 const MissingCosmetics: React.FC = (): React.JSX.Element => {
-	const [userCosmetics, setUserCosmetics] =
-		useState<number[]>(getLocalCosmetics());
+	const [userCosmetics, setUserCosmetics] = useState<number[]>(
+		getLocalCosmetics()
+	);
 
 	const toggleUnlock = (id: number) => {
 		if (!userCosmetics.includes(id)) {
@@ -22,7 +23,7 @@ const MissingCosmetics: React.FC = (): React.JSX.Element => {
 		.map((type) => {
 			// @ts-expect-error cosmetics[type] is valid
 			const missing = cosmetics[type].filter(
-				(cosmetic: Cosmetic) => !userCosmetics.includes(cosmetic.id),
+				(cosmetic: Cosmetic) => !userCosmetics.includes(cosmetic.id)
 			);
 			return { type, missing };
 		})
@@ -32,24 +33,22 @@ const MissingCosmetics: React.FC = (): React.JSX.Element => {
 
 	return (
 		<>
-			<div className="flex flex-col items-center justify-center h-full w-full p-20">
-				<div className="w-full h-full rounded-lg shadow-lg bg-gray-950 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-lg p-10 border border-gray-400 overflow-y-auto">
-					<h1 className="text-3xl font-bold text-center text-white mb-6">
+			<div className="flex flex-col items-center justify-center w-full h-full p-20">
+				<div className="w-full h-full p-10 overflow-y-auto bg-opacity-50 border border-gray-400 rounded-lg shadow-lg bg-gray-950 bg-clip-padding backdrop-filter backdrop-blur-lg">
+					<h1 className="mb-6 text-3xl font-bold text-center text-white">
 						Missing Cosmetics
 					</h1>
 
 					<div className="bg-gray-800 bg-opacity-50 rounded-lg shadow-lg p-6 w-full min-h-[200px] flex items-center justify-center">
 						{hasAllCosmetics ? (
-							<p className="text-green-400 text-xl font-semibold">
+							<p className="text-xl font-semibold text-green-400">
 								Congratulations! You have collected all cosmetics.
 							</p>
 						) : (
-							<ul className="list-none space-y-6 w-full">
+							<ul className="w-full space-y-6 list-none">
 								{missingByType.map(({ type, missing }) => (
 									<li key={type}>
-										<span className="text-white font-medium">
-											{type}
-										</span>
+										<span className="font-medium text-white">{type}</span>
 										<CosmeticGrid
 											cosmetics={missing}
 											userCosmetics={userCosmetics}

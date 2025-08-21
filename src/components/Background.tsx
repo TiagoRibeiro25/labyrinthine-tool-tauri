@@ -5,14 +5,14 @@ const Background: React.FC<PropsWithChildren> = ({
 }): React.JSX.Element => {
 	return (
 		<div
-			className="h-screen w-screen"
+			className="w-screen h-screen"
 			style={{
 				backgroundImage: "url('images/background.jpg')",
 				backgroundSize: "cover",
 				backgroundPosition: "center",
 			}}
 		>
-			<div className="bg-black bg-opacity-50 h-full w-full">{children}</div>
+			<div className="w-full h-full bg-black bg-opacity-50">{children}</div>
 		</div>
 	);
 };
