@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "My App",
+        "title": "Labyrinthine Tool",
         "width": 1100,
         "height": 750,
         "minWidth": 800,
@@ -33,7 +33,7 @@
     "active": true,
     "targets": "all",
     "icon": [
-      "icons/icon.png"
+      "icons/icon.ico"
     ]
   }
 }
